@@ -1,7 +1,7 @@
 import os, sys, re
 
-srcdir = "./lexicon"
-dir = "./lexicon/dict_nosp"
+srcdir = "./dataset/dict"
+dir = "./data/dict"
 srcdict = srcdir + "/sw-ms98-dict_patched.text"
 os .system ("mkdir -p " + dir)
 with open (srcdict, "r") as f, open (dir + "/lexicon0.txt", 'w') as g:
@@ -34,8 +34,10 @@ with open (srcdir + "/MSU_single_letter.txt", 'r') as f:
 os .system ("python format_acronyms_dict.py -i " + dir + "/lexicon2.txt -o " +\
   dir + "/lexicon3.txt -L " + srcdir + "/MSU_single_letter.txt -M " + dir + "/acronyms_raw.map")
 os. system ("cat " + dir + "/acronyms_raw.map | sort -u > " + dir + "/acronyms.map")
-os .system ("( echo 'i ay' )| cat - " + dir + "/lexicon3.txt | tr '[A-Z]' '[a-z]' | sort -u > " + dir + "/lexicon5.txt")
+os .system ("( echo 'i ay' )| cat - " + dir + "/lexicon3.txt | tr '[A-Z]' '[a-z]' | sort -u > " + dir + "/lexicon.txt")
 os .system ("pushd " + dir + " >&/dev/null")
-os .system ("ln -sf lexicon5.txt lexicon.txt")
 os .system ("popd >&/dev/null")
-os .system ("rm " + dir + "/lexiconp.txt")
+os .system ("rm " + dir + "/lexicon0.txt")
+os .system ("rm " + dir + "/lexicon1.txt")
+os .system ("rm " + dir + "/lexicon2.txt")
+os .system ("rm " + dir + "/lexicon3.txt")
