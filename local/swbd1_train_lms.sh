@@ -53,9 +53,9 @@ done
 loc=`which ngram-count`;
 if [ -z $loc ]; then
   if uname -a | grep 64 >/dev/null; then # some kind of 64 bit...
-    sdir=`pwd`/../../../tools/srilm/bin/i686-m64 
+    sdir=`pwd`/srilm-bin/macosx
   else
-    sdir=`pwd`/../../../tools/srilm/bin/i686
+    sdir=`pwd`/srilm-bin/macosx
   fi
   if [ -f $sdir/ngram-count ]; then
     echo Using SRILM tools from $sdir
@@ -80,6 +80,7 @@ cut -d' ' -f2- $text | head -n $heldout_sent > $dir/heldout
 
 cut -d' ' -f1 $lexicon > $dir/wordlist
 
+echo 83
 # Trigram language model
 ngram-count -text $dir/train.gz -order 3 -limit-vocab -vocab $dir/wordlist \
   -unk -map-unk "<unk>" -kndiscount -interpolate -lm $dir/sw1.o3g.kn.gz
@@ -88,7 +89,7 @@ ngram -unk -lm $dir/sw1.o3g.kn.gz -ppl $dir/heldout
 ngram -unk -lm $dir/sw1.o3g.kn.gz -ppl $dir/heldout -debug 2 >& $dir/3gram.ppl2
 # file data/local/lm/heldout: 10000 sentences, 118254 words, 0 OOVs
 # 0 zeroprobs, logprob= -250952 ppl= 90.5071 ppl1= 132.479
-
+echo 92
 # 4gram language model
 ngram-count -text $dir/train.gz -order 4 -limit-vocab -vocab $dir/wordlist \
   -unk -map-unk "<unk>" -kndiscount -interpolate -lm $dir/sw1.o4g.kn.gz

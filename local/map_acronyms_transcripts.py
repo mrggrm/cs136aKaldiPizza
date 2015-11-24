@@ -20,7 +20,7 @@ for pair in fin_map:
     dict_acronym_noi[items[0]] = items[1]
 fin_map.close()
 del dict_acronym_noi['I']
-del dict_acronym_noi['i']
+# del dict_acronym_noi['i']
 
 fin_trans = open(args.input, "r")
 fout_trans = open(args.output, "w")
