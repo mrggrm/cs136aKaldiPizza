@@ -10,14 +10,14 @@ os .system ("awk '" + r'BEGIN{getline}($0 !~ /^#/) {print}' + "' " + dir + "/lex
 with open (dir + "/lexicon1.txt", 'r') as f:
   with open (dir + "/nonsilence_phones.txt", 'w') as p:
     for phone in set ((re .sub (r'\n.*? ', ' ', f .read ())) .split () [1:]):
-      p .write (phone + "\n")
+      p .write (phone .lower () + "\n")
 with open (dir + "/silence_phones.txt", 'w') as f:
   for nsp in ['sil', 'spn', 'nsn', 'lau']:
     f .write (nsp + "\n")
 with open (dir + "/optional_silence.txt", 'w') as f:
   f .write ("sil")
 with open (dir + "/extra_questions.txt", 'w') as g:
-  g .write ("-n")
+  g .write ("")
 
 with open (srcdir + "/MSU_single_letter.txt", 'r') as f:
   with open (dir + "/lexicon1.txt", 'r') as g:
